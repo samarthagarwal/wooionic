@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic','starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,7 +22,6 @@ angular.module('starter', ['ionic'])
     }
   });
 })
-
 
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
@@ -45,7 +44,22 @@ angular.module('starter', ['ionic'])
   $urlRouterProvider.otherwise('/app/home');
 })
 
-.controller('AppCtrl', function(){
+.controller('AppCtrl', function($scope, WC){
+  
+  var Woocommerce = WC.WC();
+  
+  Woocommerce.get('products/categories', function(err, data, res){
+    console.log(res);
+    
+    $scope.categories = (JSON.parse(res)).product_categories;
+    
+    $scope.mainCategories = [];
+    $scope.categories.forEach(function(element, index){
+      if(element.parent == 0)
+        $scope.mainCategories.push(element);
+    })
+    
+  })
   
 })
 
