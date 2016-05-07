@@ -1,0 +1,31 @@
+<ion-view>
+    <ion-nav-title>Welcome to WooIonic</ion-nav-title>
+    
+    <ion-content>
+        <ion-slide-box show-pager="true" does-continue="true" pager-click="true" auto-play="true" slide-interval="4000">
+            <ion-slide ng-repeat="count in [1,2,3,4]">
+                <img ng-src="img/home_slider/{{count}}.jpg" class="full-image"/>
+            </ion-slide>
+        </ion-slide-box>
+        
+        <ion-list class="list-card">
+            <ion-item class="item-dividier item-button-right">
+                Shop By Category
+                <button class="button button-small button-clear button-assertive">View All</button>
+            </ion-item>
+            <ion-item class="item-avatar-left" ng-repeat="cat in mainCategories">
+                <img src="{{cat.image || 'http://loremflickr.com/64/64/'+cat.name}}"/>
+                <h2>{{cat.name}}</h2>
+                <p>{{cat.description}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-list class="item-body">
+            <ion-item class="item-image padding">
+                <img src="img/footer_banner.png"/>
+            </ion-item>
+            <ion-item>
+                <div style="font-size:10px;"><center>Developed by Samarth Agarwal</center></div>
+            </ion-item>
+        </ion-list>
+    <ion-content>
+</ion-view>
