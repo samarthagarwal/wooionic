@@ -45,3 +45,10 @@ angular.module('starter', ['ionic'])
   $urlRouterProvider.otherwise('/app/home');
 })
 
+.controller('AppCtrl', function(){
+  
+})
+
+.controller('HomeCtrl', function(){
+  
+})
