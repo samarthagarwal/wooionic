@@ -22,3 +22,21 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function(){
   
 })
+
+.controller('BrowseCtrl', function($scope, WC){
+  
+  $scope.getProducts = function(){
+    var Woocommerce = WC.WC();
+    
+    Woocommerce.get('products', function(err, data, res){
+      if(err)
+        console.log(err);
+        
+      console.log(JSON.parse(res));
+      
+      $scope.products = JSON.parse(res).products;
+    })
+  }
+  
+  $scope.getProducts(); 
+})

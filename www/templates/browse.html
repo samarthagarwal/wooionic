@@ -1,0 +1,17 @@
+<ion-view>
+    <ion-nav-title>Browse Products</ion-nav-title>
+    
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-thumbnail-left item-button-right" ng-repeat="product in products">
+                <img ng-src="{{product.featured_src}}"/>
+                <h2>{{product.title}}</h2>
+                <p>{{product.categories[0]}}<br><span ng-bind-html="product.price_html"></span></p>
+                <button class="button button-assertive">
+                    <i class="icon ion-android-cart"></i>
+                </button>
+            </ion-item>
+            
+        </ion-list>
+    </ion-content>
+</ion-view>
