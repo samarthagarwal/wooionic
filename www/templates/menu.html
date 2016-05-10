@@ -21,7 +21,7 @@
         <ion-list>
             <ion-item>Login</ion-item>
             <ion-item>Home</ion-item>
-            <ion-item>Browse</ion-item>
+            <ion-item menu-close ui-sref="app.browse">Browse</ion-item>
             <ion-item class="item-divider">Categories</ion-item>
             <ion-item ng-repeat = "cat in mainCategories">{{cat.name}}</ion-item>
         </ion-list>

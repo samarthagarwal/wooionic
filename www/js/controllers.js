@@ -24,6 +24,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('BrowseCtrl', function($scope, WC){
+  $scope.offset = 0;
+  
   
   $scope.getProducts = function(){
     var Woocommerce = WC.WC();
@@ -35,8 +37,37 @@ angular.module('starter.controllers', [])
       console.log(JSON.parse(res));
       
       $scope.products = JSON.parse(res).products;
+      
+      $scope.canLoadMore = true;
+      $scope.offset = $scope.offset + 10;
     })
   }
   
-  $scope.getProducts(); 
+  $scope.getProducts();
+    
+  $scope.doRefresh = function(){
+    $scope.getProducts();
+    $scope.$broadcast('scroll.refreshComplete'); 
+  }
+  
+  $scope.loadMore = function(){
+    
+    Woocommerce = WC.WC();
+    
+    Woocommerce.get('products?filter[offset]='+$scope.offset, function(err, data, res){
+      if(err)
+        console.log(err);
+        
+     JSON.parse(res).products.forEach(function(element, index){
+       $scope.products.push(element);
+     });
+     
+     $scope.$broadcast('scroll.infiniteScrollComplete');
+      
+      
+    })
+    
+  }
+  
+  
 })

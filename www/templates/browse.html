@@ -2,6 +2,7 @@
     <ion-nav-title>Browse Products</ion-nav-title>
     
     <ion-content>
+        <ion-refresher pulling-text="Refresh" on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
             <ion-item class="item-thumbnail-left item-button-right" ng-repeat="product in products">
                 <img ng-src="{{product.featured_src}}"/>
@@ -13,5 +14,8 @@
             </ion-item>
             
         </ion-list>
+        <ion-infinite-scroll on-infinite="loadMore()" ng-if="canLoadMore" immediate-check="false">
+            
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>
