@@ -14,7 +14,7 @@
                 <button class="button button-small button-clear button-assertive">View All</button>
             </ion-item>
             <ion-item class="item-avatar-left" ng-repeat="cat in mainCategories">
-                <img src="{{cat.image || 'http://loremflickr.com/64/64/'+cat.name}}"/>
+                <img ng-src="{{cat.image || 'http://loremflickr.com/64/64/'+cat.name}}"/>
                 <h2>{{cat.name}}</h2>
                 <p>{{cat.description}}</p>
             </ion-item>
