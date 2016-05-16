@@ -1,6 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, WC){
+.controller('AppCtrl', function($scope, WC, $localStorage, $rootScope){
+  
+  
+  $localStorage.cart = [];
+  
+  if($localStorage.cart)
+    $rootScope.cartCount = $localStorage.cart.length;
+  else
+    $rootScope.cartCount = 0;
   
   var Woocommerce = WC.WC();
   
@@ -23,7 +31,7 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('BrowseCtrl', function($scope, WC){
+.controller('BrowseCtrl', function($scope, WC, $localStorage, $rootScope){
   
   $scope.offset = 0;
   
@@ -36,9 +44,14 @@ angular.module('starter.controllers', [])
         
       console.log(JSON.parse(res));
       
+      JSON.parse(res).products.forEach(function(element, index){
+        element.count = 0;
+      })
+      
       $scope.products = JSON.parse(res).products;
       $scope.offset = $scope.offset + 10;
       $scope.canLoadMore = true;
+      $scope.$apply();
     })
   }
   
@@ -59,7 +72,7 @@ angular.module('starter.controllers', [])
         console.log(err);
         
       JSON.parse(res).products.forEach(function(element, index){
-        
+        element.count = 0;
         $scope.products.push(element);
         
       })
@@ -76,6 +89,27 @@ angular.module('starter.controllers', [])
       }
       
     })
+    
+  }
+  
+  
+  $scope.addToCart = function(product){
+    var countIncreased = false;
+    $localStorage.cart.forEach(function(item, index){
+      if(item.id == product.id && !countIncreased){
+        console.log(item.id + " == " + product.id);
+        item.count += 1;
+        console.log("Count increased by 1");
+        countIncreased = true;
+      }
+    });
+    
+    if(!countIncreased){
+      product.count = 1;
+      $localStorage.cart.push(product);
+    }
+    
+    $rootScope.cartCount = $localStorage.cart.length;
     
   }
   
