@@ -1,0 +1,24 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Your Cart</h1>
+    </ion-header-bar>
+    
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-avatar-left" ng-repeat="product in cartItems">
+                <img ng-src="{{product.featured_src}}"/>
+                <h2>{{product.title}}</h2>
+                <p ng-bind-html="product.price_html"></p>
+                <span class="badge badge-assertive">{{product.count}}</span>
+            </ion-item>
+            <ion-item style="text-align: right">
+                <h2>INR {{costSum}}</h2>
+                <p>Go to Checkout to Pay</p>
+            </ion-item>
+        </ion-list>
+        <div class="button-bar">
+            <button class="button button-block button-outline" ng-click="modal.hide()">Cancel</button>
+            <button class="button button-assertive button-block button-outline">Checkout</button>
+        </div>
+    </ion-content>
+</ion-modal-view>
