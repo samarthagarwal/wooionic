@@ -11,7 +11,7 @@
         <ion-list class="list-card">
             <ion-item class="item-dividier item-button-right">
                 Shop By Category
-                <button class="button button-small button-clear button-assertive">View All</button>
+                <button class="button button-small button-clear button-assertive" ui-sref="app.categories">View All</button>
             </ion-item>
             <ion-item class="item-avatar-left" ng-repeat="cat in mainCategories">
                 <img ng-src="{{cat.image || 'http://loremflickr.com/64/64/'+cat.name}}"/>

@@ -1,0 +1,11 @@
+<ion-view view-title="Product Categories">
+  <ion-content>
+  	<ion-list class="card">
+  		<ion-item ng-repeat="category in categories" class="item-avatar-left item-text-wrap">
+  			<img ng-src="{{category.image || 'http://loremflickr.com/64/64/' + category.name}}"/>
+  			<h2>{{category.name}}</h2>
+  			<p>{{category.description}}</p>
+		</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
