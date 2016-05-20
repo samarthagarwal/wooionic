@@ -1,0 +1,18 @@
+<ion-view>
+	<ion-nav-title>Products by Category</ion-nav-title>
+
+  <ion-content>
+    <div class="list">
+
+	    <div class="item item-thumbnail-left item-button-right" ng-repeat="product in products">
+	      <img ng-src="{{product.featured_src}}">
+	      <h2>{{product.title}}</h2>
+	      <p>{{product.categories[0]}}<br/><span ng-bind-html='product.price_html'></span></p>
+	      <button class="button button-assertive" ng-click="addToCart(product);">
+	      	<i class="icon ion-android-cart"></i>
+	      </button>
+	    </div>
+
+	</div>
+  </ion-content>
+</ion-view>

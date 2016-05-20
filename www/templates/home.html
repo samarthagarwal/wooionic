@@ -13,7 +13,7 @@
                 Shop By Category
                 <button class="button button-small button-clear button-assertive" ui-sref="app.categories">View All</button>
             </ion-item>
-            <ion-item class="item-avatar-left" ng-repeat="cat in mainCategories">
+            <ion-item class="item-avatar-left" ng-repeat="cat in mainCategories" ui-sref="app.category({categoryID: cat.slug})">
                 <img ng-src="{{cat.image || 'http://loremflickr.com/64/64/'+cat.name}}"/>
                 <h2>{{cat.name}}</h2>
                 <p>{{cat.description}}</p>
