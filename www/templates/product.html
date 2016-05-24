@@ -54,5 +54,16 @@
             </div>
         </div>    
         
+        <div class="list card">
+            <div class="item item-body">
+                <h2>Product Reviews</h2>
+                <ion-list ng-repeat="review in reviews">
+                    <ion-item class="item-divider">{{review.reviewer_name}}</ion-item>
+                    <ion-item class="item-text-wrap">{{review.review}}</ion-item>
+                </ion-list>
+            </div>
+        </div>
+        
+        
     </ion-content>
 </ion-view>

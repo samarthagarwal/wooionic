@@ -206,7 +206,7 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('ProductCtrl', function($scope, WC, $stateParams, $ionicSlideBoxDelegate){
+.controller('ProductCtrl', function($scope, WC, $stateParams, $ionicSlideBoxDelegate, $localStorage, $rootScope){
   
   var Woocommerce = WC.WC();
   
@@ -223,6 +223,33 @@ angular.module('starter.controllers', [])
     $ionicSlideBoxDelegate.loop(true);
     
     
+    Woocommerce.get('products/' + $stateParams.productID + '/reviews', function(error, dat, response){
+      if(error)
+        console.log(error);
+        
+      $scope.reviews = JSON.parse(response).product_reviews;  
+      
+    })
+    
   })
+  
+  $scope.addToCart = function(product){
+    var countIncreased = false;
+    $localStorage.cart.forEach(function(item, index){
+      if(item.id == product.id && !countIncreased){
+        console.log(item.id + "==" + product.id);
+        item.count += 1;
+        console.log("count increased by 1 for " + item.title);
+        countIncreased = true;    
+      }
+    });
+    
+    if(!countIncreased){
+      product.count = 1;
+      $localStorage.cart.push(product);
+    }
+    $rootScope.cartCount = $localStorage.cart.length;
+  }
+  
   
 })
