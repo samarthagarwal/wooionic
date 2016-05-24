@@ -66,6 +66,15 @@ angular.module('starter', ['ionic','starter.services','starter.controllers','ngS
         controller: 'CategoryCtrl'
       }
     }
+  })
+  .state('app.product', {
+    url : '/product/:productID',
+    views : {
+      'menuContent' : {
+        templateUrl: 'templates/product.html',
+        controller: 'ProductCtrl'
+      }
+    }
   });
   
   $urlRouterProvider.otherwise('/app/home');

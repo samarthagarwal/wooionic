@@ -175,7 +175,7 @@ angular.module('starter.controllers', [])
   Woocommerce.get('products?filter[category]='+$stateParams.categoryID, function(err, data, res){
     
     $scope.products =JSON.parse(res).products;
-    
+    $scope.$apply();
     $scope.products.forEach(function(element, index){
       element.count = 0;
     });
@@ -198,8 +198,29 @@ angular.module('starter.controllers', [])
       }
       
       $rootScope.cartCount = $localStorage.cart.length;
-      $scope.$apply();
+      
     }
+    
+    
+  })
+  
+})
+
+.controller('ProductCtrl', function($scope, WC, $stateParams, $ionicSlideBoxDelegate){
+  
+  var Woocommerce = WC.WC();
+  
+  Woocommerce.get('products/' + $stateParams.productID, function(err, data, res){
+    if(err)
+      console.log(err);
+      
+    $scope.product = JSON.parse(res).product;
+    $scope.images = JSON.parse(res).product.images;
+    console.log($scope.product);
+    $scope.$apply();
+    
+    $ionicSlideBoxDelegate.update();
+    $ionicSlideBoxDelegate.loop(true);
     
     
   })

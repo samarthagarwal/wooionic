@@ -1,0 +1,58 @@
+<ion-view>
+    <ion-nav-title>{{product.title}}</ion-nav-title>
+    
+    <ion-content>
+    
+        <ion-list class="list-card">
+            <ion-item class="item-body">
+                <ion-slide-box show-pager="true" does-continue="true" pager-click="true" auto-play="true" slide-interval="4000">
+                  <ion-slide ng-repeat="img in images"><center>
+                    <img ng-src="{{img.src}}" style="width:350px !important; height:350px; margin:auto; display:block" /></center>
+                  </ion-slide>
+                </ion-slide-box>
+            </ion-item>
+        </ion-list>
+        <div class="list card">
+            <div class="item item-body">
+               <div class="row">
+                    <div class="col-50">
+                        <h2>{{product.title}}</h2>
+                        <p><span ng-repeat="category in product.categories">{{category}} | </span></p>
+                    </div>
+                    <div class="col-50">
+                        <button class="button button-positive button-block" ng-click="addToCart(product)">Add To Cart</button>    
+                    </div>
+                </div>
+                <p ng-bind-html="product.description"> </p>
+            </div>
+        </div>
+
+        <div class="list card">
+            <div class="item item-body">
+                <div class="row">
+                    <div class="col-50">
+                        <h2>Price </h2>
+                        <h2 ng-bind-html="product.price_html"></h2>
+                    </div>
+                    <div class="col-50">
+                        <h2>Average Rating</h2> 
+                        <h2>{{product.average_rating}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="list card">
+            <div class="item item-body">
+                <h2>Product Specifications</h2>
+                <table style="min-width:100%;">
+                    <tr class="row" ng-repeat = "attribute in product.attributes">
+                        <td class="col-33"><b>{{attribute.name}}</b></td>
+                        <td class="col-66"><span ng-repeat = "option in attribute.options">{{option}}</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>    
+        
+    </ion-content>
+</ion-view>

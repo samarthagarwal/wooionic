@@ -4,7 +4,7 @@
   <ion-content>
     <div class="list">
 
-	    <div class="item item-thumbnail-left item-button-right" ng-repeat="product in products">
+	    <div class="item item-thumbnail-left item-button-right" ng-repeat="product in products" ui-sref="app.product({productID: product.id})">
 	      <img ng-src="{{product.featured_src}}">
 	      <h2>{{product.title}}</h2>
 	      <p>{{product.categories[0]}}<br/><span ng-bind-html='product.price_html'></span></p>

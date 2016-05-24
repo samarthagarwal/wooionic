@@ -4,7 +4,7 @@
     <ion-content>
         <ion-refresher pulling-text="Refresh" on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
-            <ion-item class="item-thumbnail-left item-button-right" ng-repeat="product in products">
+            <ion-item class="item-thumbnail-left item-button-right" ng-repeat="product in products" ui-sref="app.product({productID: product.id})">
                 <img ng-src="{{product.featured_src}}"/>
                 <h2>{{product.title}}</h2>
                 <p>{{product.categories[0]}}<br><span ng-bind-html="product.price_html"></span></p>
