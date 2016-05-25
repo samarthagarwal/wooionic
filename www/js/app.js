@@ -75,6 +75,15 @@ angular.module('starter', ['ionic','starter.services','starter.controllers','ngS
         controller: 'ProductCtrl'
       }
     }
+  })
+  .state('app.signup', {
+    url : '/signup/',
+    views : {
+      'menuContent' : {
+        templateUrl: 'templates/signup.html',
+        controller: 'SignUpCtrl'
+      }
+    }
   });
   
   $urlRouterProvider.otherwise('/app/home');
