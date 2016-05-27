@@ -4,14 +4,14 @@
     <ion-content>
         <ion-refresher pulling-text="Refresh" on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
-            <ion-item class="item-thumbnail-left item-button-right" ng-repeat="product in products" ui-sref="app.product({productID: product.id})">
-                <img ng-src="{{product.featured_src}}"/>
+            <div class="item item-thumbnail-left item-button-right" ng-repeat="product in products"  ui-sref="app.product({productID : product.id})">
+                <img ng-src="{{product.featured_src}}">
                 <h2>{{product.title}}</h2>
-                <p>{{product.categories[0]}}<br><span ng-bind-html="product.price_html"></span></p>
-                <button class="button button-assertive" ng-click="addToCart(product)">
+                <p>{{product.categories[0]}}<br/><span ng-bind-html='product.price_html'></span></p>
+                <button class="button button-assertive" ng-click="addToCart(product); $event.stopPropagation();">
                     <i class="icon ion-android-cart"></i>
                 </button>
-            </ion-item>
+            </div>
             
         </ion-list>
         <ion-infinite-scroll on-infinite="loadMore()" ng-if="canLoadMore" immediate-check="false">
