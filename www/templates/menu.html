@@ -19,9 +19,9 @@
     <ion-side-menu>
         <img src="img/menu_banner.jpg" style="width:100%; height:auto;"/>
         <ion-list>
-            <ion-item>Login</ion-item>
+            <ion-item menu-close ui-sref="app.login">Login</ion-item>
             <ion-item menu-close ui-sref="app.signup">Sign Up</ion-item>
-            <ion-item>Home</ion-item>
+            <ion-item menu-close ui-sref="app.home">Home</ion-item>
             <ion-item menu-close ui-sref="app.browse">Browse</ion-item>
             <ion-item class="item-divider">Categories</ion-item>
             <ion-item ng-repeat = "cat in mainCategories">{{cat.name}}</ion-item>

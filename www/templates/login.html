@@ -1,0 +1,24 @@
+<ion-view>
+  <ion-nav-title>Login</ion-nav-title>
+  <div class='bar bar-subheader bar-positive'>
+    <h1 class="title">Please login or sign up to continue</h1>
+  </div>
+  <ion-content class="has-subheader padding">
+    <form>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="loginData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="loginData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="login(loginData)">Log in</button>
+        </label>
+      </div>
+    </form>
+    <button class="button button-block button-outline button-positive" ui-sref="app.signup">Sign Up Here</button>
+  </ion-content>
+</ion-view>

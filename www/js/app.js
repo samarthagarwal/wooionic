@@ -84,6 +84,15 @@ angular.module('starter', ['ionic','starter.services','starter.controllers','ngS
         controller: 'SignUpCtrl'
       }
     }
+  })
+  .state('app.login', {
+    url : '/login/',
+    views : {
+      'menuContent' : {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
   });
   
   $urlRouterProvider.otherwise('/app/home');

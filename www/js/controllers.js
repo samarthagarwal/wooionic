@@ -362,7 +362,7 @@ angular.module('starter.controllers', [])
       if(JSON.parse(res).customer){
         $ionicPopup.show({
           title: "Congratulations",
-          template: "Tour account has been created successfully. Please login.",
+          template: "Your account has been created successfully. Please login.",
           buttons: [{
             text: "Login",
             type: "button-assertive",
@@ -379,6 +379,43 @@ angular.module('starter.controllers', [])
           buttons: [{
             text: "OK",
             type: "button-assertive"
+          }]
+        })
+      }
+    });
+    
+  }
+  
+  
+})
+
+.controller('LoginCtrl', function($scope, $http, $localStorage, $ionicPopup, $state, WC){
+  
+  $scope.login = function(userData){
+    
+    $http.get('http://samarth.cloudapp.net/api/auth/generate_auth_cookie/?insecure=cool&username='+userData.username+'&password='+userData.password)
+    .then(function(response){
+      console.log(response);
+      
+      if(response.data.user){
+        $localStorage.userData = response;
+        $ionicPopup.show({
+          title: 'Welcome ' + response.data.user.displayname,
+          template: '<center>You have logged in successfully.</center>',
+          buttons: [{
+            text: 'OK',
+            onTap: function(e){
+              $state.go('app.home');
+            }
+          }]
+        })
+      }
+      else{
+        $ionicPopup.show({
+          title: 'Something is wrong. Please Check.',
+          template: '<center>Please check your username and password.</center>',
+          buttons: [{
+            text: 'Retry'
           }]
         })
       }
