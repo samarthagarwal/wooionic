@@ -2,6 +2,17 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, WC, $localStorage, $rootScope, $ionicModal){
   
+  $scope.$on('$ionicView.enter', function(e) {
+    console.log("userData", $localStorage.userData);
+    if($localStorage.userData){
+      $rootScope.userData = $localStorage.userData
+    }
+  });
+  
+  $scope.logout = function(){
+    $localStorage.userData = undefined;
+    $rootScope.userData = undefined;
+  }
   
   $localStorage.cart = [];
   
@@ -389,7 +400,7 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('LoginCtrl', function($scope, $http, $localStorage, $ionicPopup, $state, WC){
+.controller('LoginCtrl', function($scope, $http, $localStorage, $ionicPopup, $state, WC, $ionicHistory){
   
   $scope.login = function(userData){
     
@@ -405,6 +416,12 @@ angular.module('starter.controllers', [])
           buttons: [{
             text: 'OK',
             onTap: function(e){
+              $ionicHistory.nextViewOptions({
+                disableAnimate: true,
+                disableBack: true
+              });
+              $ionicHistory.clearHistory();
+              $ionicHistory.clearCache();
               $state.go('app.home');
             }
           }]
