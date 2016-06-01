@@ -93,6 +93,15 @@ angular.module('starter', ['ionic','starter.services','starter.controllers','ngS
         controller: 'LoginCtrl'
       }
     }
+  })
+  .state('app.checkout', {
+    url : '/checkout/',
+    views : {
+      'menuContent' : {
+        templateUrl: 'templates/checkout.html',
+        controller: 'CheckoutCtrl'
+      }
+    }
   });
   
   $urlRouterProvider.otherwise('/app/home');
